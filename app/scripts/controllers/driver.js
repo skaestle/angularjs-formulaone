@@ -1,17 +1,22 @@
 'use strict';
 
 // TODO: why does this work (ergast)
-angular.module('formulaOneApp').controller('DriverCtrl', function ($scope, ergast) {
+angular.module('formulaOneApp').controller('DriverCtrl', function ($scope, $routeParams, ergast) {
   $scope.awesomeThings = [
     'HTML5 Boilerplate',
     'AngularJS',
     'Karma'
   ];
 
-  $scope.driversList = [];
+  $scope.id = $routeParams.id;
+  $scope.races = [];
+  $scope.driver = null;
 
-  ergast.getDrivers().success(function (response) {
-      //Dig into the responde to get the relevant data
-      $scope.driversList = response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+  ergast.getDriverDetails($scope.id).success(function (response) {
+    $scope.driver = response.MRData.StandingsTable.StandingsLists[0].DriverStandings[0]; 
+  });
+
+  ergast.getDriverRaces($scope.id).success(function (response) {
+    $scope.races = response.MRData.RaceTable.Races; 
   });
 });

@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: DriverCtrl', function () {
+describe('Controller: DriversCtrl', function () {
 
   // load the controller's module
   beforeEach(module('formulaOneApp'));
 
-  var DriverCtrl,
+  var DriversCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    DriverCtrl = $controller('DriverCtrl', {
+    DriversCtrl = $controller('DriversCtrl', {
       $scope: scope
     });
   }));
